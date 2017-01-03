@@ -10,8 +10,9 @@ To use this script download texdiag.py and run either in the python terminal or 
 Example Output
 --------------
 
+!(https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.pdf)
 
-
+```
 -----------------------------------------
 SECTION LIST VIEW
 =================
@@ -29,6 +30,6 @@ Total Words: 1084.0
 Gantt Diagram plotted to texdiag.pdf
 
 -----------------------------------------
-
+```
 
 Use the showempty keyword to show a list of all the empty sections in the document.
