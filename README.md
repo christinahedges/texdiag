@@ -5,12 +5,14 @@ texdiag is a python script to produce diagnostics of long tex files, such as aca
 
 To use this script download texdiag.py and run either in the python terminal or from the shell using 
 
+```
     python -c "import texdiag as t;t.diagnose('./examples/example.tex')"
+```
 
 Example Output
 --------------
 
-!(https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.pdf)
+![Example Gantt Chart](texdiag.pdf)
 
 ```
 -----------------------------------------
