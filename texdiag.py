@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import os.path
 
+
 def diagnose(fname,plot_gantt=True,showfigures=False,showincluded=False,showlist=True,showempty=True):
 
     if not fname.endswith('.tex'):
@@ -207,3 +208,6 @@ def diagnose(fname,plot_gantt=True,showfigures=False,showincluded=False,showlist
         print 'Gantt Diagram plotted to texdiag.pdf'
     print ''
     print '-----------------------------------------'
+
+if __name__ == "__main__":
+    diagnose(sys.argv[1])
