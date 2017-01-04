@@ -5,7 +5,8 @@ import matplotlib.patches as mpatches
 import os.path
 
 
-def diagnose(fname,plot_gantt=True,showfigures=False,showincluded=False,showlist=True,showempty=True):
+def diagnose(fname,plot_gantt=True,showfigures=True,showincluded=True,showlist=True,showempty=True):
+   
 
     if not fname.endswith('.tex'):
         print 'Please pass a .tex file.'
@@ -29,15 +30,19 @@ def diagnose(fname,plot_gantt=True,showfigures=False,showincluded=False,showlist
             for w in open(path+i+'.tex').read().split():   
                 words=np.append(words,w)
         words=np.append(words,word)
-
-    if showincluded==True:
-        print '-----------------------------------------'
-        print 'INCLUDED TEX FILES'
-        print '================='
-        print ''
-        for i in included:
-            print i
     file.close();
+
+
+    f = open('texdiag.txt', 'w')
+    if showincluded==True:
+        print >> f, '-----------------------------------------'
+        print >> f, 'INCLUDED TEX FILES'
+        print >> f,  '================='
+        print >> f, ''
+        for i in included:
+             print >> f, i
+
+    
     types=['\part','\chapter','\section','\subsection','\subsubsection','\paragraph','\subparagraph']
     aims=[10000,5000,1000,500,300,150,100]
     w='\section{Introduction}'
@@ -92,15 +97,14 @@ def diagnose(fname,plot_gantt=True,showfigures=False,showincluded=False,showlist
     wcounts[prevlevel,sec-1]=wordcount
         
     if showfigures==True:
-        print '-----------------------------------------'
-        print 'INCLUDED FIGURE FILES'
-        print '================='
-        print ''
+        print >> f, '-----------------------------------------'
+        print >> f, 'INCLUDED FIGURE FILES'
+        print >> f,  '==================='
+        print >> f,  ''
         for w in words:
             if '\includegraphics' in w:
-                print w[w.index('{')+1:w.index('}')]
-
-        print '-----------------------------------------'
+                print >> f, w[w.index('{')+1:w.index('}')]
+   
 
     headings=np.empty(len(np.transpose(secs)),dtype='|S64')
     wc=np.zeros(len(np.transpose(secs)))
@@ -180,34 +184,36 @@ def diagnose(fname,plot_gantt=True,showfigures=False,showincluded=False,showlist
 
 
     if showlist==True:
-        print '-----------------------------------------'
-        print 'SECTION LIST VIEW'
-        print '================='
-        print ''
+        print >> f, '-----------------------------------------'
+        print >> f, 'SECTION LIST VIEW'
+        print >> f, '================='
+        print >> f, ''
         for l,h,st in zip(level,headings,stacked):
             try:
-                abrv=h[0:16]
+                abrv=h[0:40]
             except:
                 abrv=h
 
-            print '-'.join(['------------']*np.int(l)),abrv,' (',np.int(st),' words)'
+            print >> f, '-'.join(['------------']*np.int(l)),abrv,' (',np.int(st),' words)'
 
 
     if showempty==True:
-        print '-----------------------------------------'
-        print 'EMPTY SECTIONS:'
-        print '================'
+        print >> f, '-----------------------------------------'
+        print >> f, 'EMPTY SECTIONS:'
+        print >> f, '================'
         for l,h,w in zip(level,headings,wc):    
             if w<20:
-                print 'Empty '+types[np.int(l)][1:]+': ',h
+                print >> f, 'Empty '+types[np.int(l)][1:]+': ',h
+   
 
-    print '-----------------------------------------'
-    print ''
-    print 'Total Words:',np.sum(wc)
+    print >> f, '-----------------------------------------'
+    print >> f, ''
+    print >> f, 'Total Words:',np.sum(wc)
+    print >> f,''
     if plot_gantt==True:
-        print 'Gantt Diagram plotted to texdiag.pdf'
-    print ''
-    print '-----------------------------------------'
-
+        print >> f, 'Gantt Diagram plotted to texdiag.pdf'
+    print >> f, ''
+    print >> f, '-----------------------------------------'
+    f.close()
 if __name__ == "__main__":
     diagnose(sys.argv[1])

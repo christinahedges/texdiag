@@ -1,0 +1,29 @@
+-----------------------------------------
+INCLUDED TEX FILES
+=================
+
+-----------------------------------------
+INCLUDED FIGURE FILES
+===================
+
+-----------------------------------------
+SECTION LIST VIEW
+=================
+
+------------ Chapter 1  ( 1771  words)
+------------------------- Section: Introduction  ( 551  words)
+-------------------------------------- Subsection  ( 412  words)
+------------------------- Short Section  ( 54  words)
+-------------------------------------- Missing Subsection  ( 2  words)
+------------------------- Conclusion  ( 685  words)
+-----------------------------------------
+EMPTY SECTIONS:
+================
+Empty subsection:  Missing Subsection
+-----------------------------------------
+
+Total Words: 1771.0
+
+Gantt Diagram plotted to texdiag.pdf
+
+-----------------------------------------
